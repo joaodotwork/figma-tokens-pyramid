@@ -1,0 +1,33 @@
+# Source files (we ship compiled dist/)
+src/
+tests/
+examples/
+
+# Development files
+.github/
+.vscode/
+.editorconfig
+.eslintrc
+.prettierrc
+vitest.config.js
+tsconfig.json
+
+# Documentation source
+docs/
+
+# Git
+.git/
+.gitignore
+
+# Environment
+.env
+.env.*
+
+# Build
+*.log
+coverage/
+.nyc_output/
+
+# OS
+.DS_Store
+Thumbs.db
