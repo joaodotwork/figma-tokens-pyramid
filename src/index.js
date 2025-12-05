@@ -9,6 +9,7 @@ import { TokenFilter } from './core/token-filter.js';
 import { TokenExtractor } from './core/token-extractor.js';
 import { AliasResolver } from './core/alias-resolver.js';
 import { StyleDictionaryTransformer } from './transformers/style-dictionary.js';
+import { DeveloperPackageBuilder } from './builders/developer-package.js';
 import { loadConfig } from './config/loader.js';
 
 export class FigmaTokensExtractor {
@@ -20,6 +21,7 @@ export class FigmaTokensExtractor {
     this.extractor = new TokenExtractor(config.figma || config);
     this.aliasResolver = new AliasResolver();
     this.transformer = new StyleDictionaryTransformer();
+    this.packageBuilder = new DeveloperPackageBuilder(config);
   }
 
   /**
@@ -83,8 +85,7 @@ export class FigmaTokensExtractor {
    * @returns {Promise<object>} Package result
    */
   async createDeveloperPackage(tokens, options = {}) {
-    // This will be implemented with developer package builder
-    throw new Error('Developer package creation not yet implemented');
+    return this.packageBuilder.build(tokens);
   }
 
   /**
@@ -104,4 +105,5 @@ export { TokenFilter } from './core/token-filter.js';
 export { TokenExtractor } from './core/token-extractor.js';
 export { AliasResolver } from './core/alias-resolver.js';
 export { StyleDictionaryTransformer } from './transformers/style-dictionary.js';
+export { DeveloperPackageBuilder } from './builders/developer-package.js';
 export { loadConfig } from './config/loader.js';

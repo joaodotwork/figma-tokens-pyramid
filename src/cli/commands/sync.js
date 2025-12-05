@@ -64,9 +64,16 @@ export async function syncCommand(options) {
     console.log(`  ${sdDir}/tokens.json`);
 
     // Developer package if requested
-    if (options.createPackage) {
+    if (options.createPackage && extractor.config.developerPackage?.enabled) {
       console.log('');
-      console.log(chalk.yellow('Developer package creation coming in Phase 3!'));
+      spinner.start('Creating developer package...');
+      const pkgResult = await extractor.createDeveloperPackage(tokens);
+      spinner.succeed('Developer package created');
+
+      console.log(chalk.dim(`  Path: ${pkgResult.path}`));
+      if (pkgResult.archivePath) {
+        console.log(chalk.dim(`  Archive: ${pkgResult.archivePath}`));
+      }
     }
   } catch (error) {
     spinner.fail('Sync failed');
