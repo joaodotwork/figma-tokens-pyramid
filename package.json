@@ -3,23 +3,19 @@
   "version": "0.1.0",
   "description": "Extract, transform, and build design tokens from Figma Variables API",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.js",
   "bin": {
     "figma-tokens": "./bin/figma-tokens.js"
   },
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./src/index.js"
     },
-    "./config": "./dist/config.js",
-    "./builders/*": "./dist/builders/*.js"
+    "./config": "./src/config/loader.js",
+    "./builders/*": "./src/builders/*.js"
   },
   "files": [
-    "dist",
+    "src",
     "bin",
     "templates",
     "README.md",
