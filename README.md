@@ -79,31 +79,83 @@ figma-tokens build --platform web
 
 ### `figma-tokens init`
 Initialize configuration file
+```bash
+figma-tokens init
+```
 
 ### `figma-tokens extract`
 Extract tokens from Figma
+```bash
+figma-tokens extract [options]
+
+Options:
+  -c, --config <path>   Path to config file (default: figma-tokens.config.js)
+  -o, --output <path>   Output directory
+```
 
 ### `figma-tokens transform`
 Transform tokens to Style Dictionary format
+```bash
+figma-tokens transform [options]
+
+Options:
+  -c, --config <path>   Path to config file
+  -i, --input <path>    Input tokens file
+  -o, --output <path>   Output directory
+```
 
 ### `figma-tokens build`
-Build platform-specific outputs
+Build platform-specific outputs *(coming soon)*
+```bash
+figma-tokens build [options]
 
 Options:
-- `--platform <platform>` - Build for specific platform (web, react-native)
-- `--output <dir>` - Custom output directory
+  -p, --platform <platform>  Platform to build (web, react-native)
+  -o, --output <path>        Output directory
+```
 
 ### `figma-tokens sync`
-Run extract + transform + build in one command
+Run extract + transform in one command
+```bash
+figma-tokens sync [options]
 
 Options:
-- `--create-package` - Also create developer package
+  -c, --config <path>    Path to config file
+  --create-package       Also create developer package
+```
 
-### `figma-tokens create-package`
+### `figma-tokens create-package` ⭐
 Create distributable developer package
+```bash
+figma-tokens create-package [options]
+
+Options:
+  -c, --config <path>   Path to config file
+  -v, --version <ver>   Package version
+  --no-zip              Skip creating archive
+```
+
+**Example output:**
+```
+✔ Configuration loaded
+✔ Tokens loaded
+✔ Developer package created
+
+✓ Developer package created successfully!
+
+Package Details:
+  Path: developer-packages/20251205-optimized/developer-package
+  Archive: developer-packages/20251205-optimized/20251205-design-tokens-package.zip
+
+Token Statistics:
+  reference: 120 tokens
+  system: 162 tokens
+  component: 199 tokens
+  Total: 481 tokens
+```
 
 ### `figma-tokens validate`
-Validate token structure and references
+Validate token structure and references *(coming soon)*
 
 ## Programmatic API
 
@@ -160,12 +212,53 @@ export default {
 
 ## Examples
 
-See the [examples](./examples) directory for:
+### Basic Workflow
+```bash
+# 1. Initialize
+figma-tokens init
+
+# 2. Configure (edit figma-tokens.config.js)
+# Add your Figma file key, access token, collection IDs, and mode IDs
+
+# 3. Extract and transform
+figma-tokens sync
+
+# Output:
+# ✔ Tokens extracted from Figma
+# ✔ Tokens transformed
+# Files written:
+#   ./tokens/index.json
+#   ./style-dictionary/tokens.json
+```
+
+### Create Developer Package
+```bash
+# Enable in config first
+# developerPackage.enabled = true
+
+figma-tokens create-package
+
+# Creates:
+# - developer-packages/YYYYMMDD-optimized/developer-package/
+# - Auto-generated package.json
+# - Auto-generated README.md
+# - .zip archive ready for distribution
+```
+
+### Full Workflow with Package
+```bash
+figma-tokens sync --create-package
+
+# Runs:
+# 1. Extract from Figma
+# 2. Transform to Style Dictionary
+# 3. Create developer package
+```
+
+See the [examples](./examples) directory for more:
 - Basic usage
 - Custom configuration
-- Custom transformers
-- Developer package creation
-- Platform-specific builds
+- Programmatic API usage
 
 ## Development
 
