@@ -7,7 +7,11 @@
 import { pathToFileURL } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
+import dotenv from 'dotenv';
 import { getDefaultConfig } from './defaults.js';
+
+// Load environment variables
+dotenv.config();
 
 export class ConfigLoader {
   /**
