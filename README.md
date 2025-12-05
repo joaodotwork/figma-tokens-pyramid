@@ -25,6 +25,18 @@ Or install globally for CLI usage:
 npm install -g @joaodotwork/figma-tokens-pyramid
 ```
 
+### Install from GitHub Packages
+
+The package is also available on GitHub Packages:
+
+```bash
+# Configure npm to use GitHub Packages for @joaodotwork scope
+echo "@joaodotwork:registry=https://npm.pkg.github.com" >> .npmrc
+
+# Install the package
+npm install @joaodotwork/figma-tokens-pyramid
+```
+
 ## Quick Start
 
 ### 1. Initialize Configuration
