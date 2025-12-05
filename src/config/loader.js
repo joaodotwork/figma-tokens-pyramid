@@ -10,8 +10,8 @@ import fs from 'fs/promises';
 import dotenv from 'dotenv';
 import { getDefaultConfig } from './defaults.js';
 
-// Load environment variables
-dotenv.config();
+// Load environment variables from current working directory
+dotenv.config({ path: path.join(process.cwd(), '.env') });
 
 export class ConfigLoader {
   /**
