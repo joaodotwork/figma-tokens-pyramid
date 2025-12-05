@@ -14,9 +14,10 @@ import { loadConfig } from './config/loader.js';
 export class FigmaTokensExtractor {
   constructor(config) {
     this.config = config;
-    this.client = new FigmaClient(config);
-    this.filter = new TokenFilter(config);
-    this.extractor = new TokenExtractor(config);
+    // Pass figma config to client
+    this.client = new FigmaClient(config.figma || config);
+    this.filter = new TokenFilter(config.figma || config);
+    this.extractor = new TokenExtractor(config.figma || config);
     this.aliasResolver = new AliasResolver();
     this.transformer = new StyleDictionaryTransformer();
   }
