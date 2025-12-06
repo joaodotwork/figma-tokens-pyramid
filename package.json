@@ -1,6 +1,6 @@
 {
   "name": "@joaodotwork/figma-tokens-pyramid",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Extract, transform, and build design tokens from Figma Variables API",
   "type": "module",
   "main": "./src/index.js",
